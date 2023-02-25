@@ -1,0 +1,146 @@
+.headerInner {
+    @include mxAuto;
+    padding: var(--space-sm) var(--space-md);
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media #{$md} {
+        display: grid;
+        padding: var(--space-xl) var(--space-md);
+        grid-template-columns: 1fr 1fr;
+        max-width: var(--width-main);
+    }
+}
+
+.headerNav {// ul
+    
+    @media #{$sp} {
+        // navIsOpen時の黒いオーバーレイに関する指定
+        position: fixed;
+        inset: 0 -100% 0 100%;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: var(--black);
+        transition: transform .4s;
+
+        // navIsOpen時の各メニュー項目の指定
+        display: grid;
+        gap: var(--space-lg);
+        place-content: center;
+        text-align: center;
+    }
+
+    @media #{$md} {
+        display: flex;
+        gap: 2em;
+        justify-content: right;
+    }
+
+    a {
+        @include hover;
+    }
+}
+
+@media #{$sp} {
+    .open .headerNav {
+        transform: translateX(-100%);
+    }    
+}
+
+
+// 三本線ナビの指定
+.headerNavButton {// button
+    // header > nav > button.headerNavButon + ul.headerNav
+
+    @media #{$sp} {
+   
+        all: unset;
+        outline: revert;
+        -webkit-tap-highlite-color: transparent;
+        cursor: pointer;
+        width: 42px;
+        height: 42px;
+        position: relative;
+        z-index: 200;
+
+        display: grid;
+        place-items: center;
+        color: var(--black);
+
+        &::before,
+        &::after,
+        & .centerBar {
+            display: block;
+            grid-area: 1 / 1;
+            content: '';
+            width: 28px;
+            height: 1px;
+            background-color: currentColor;
+            transition: transform 0.4s;
+        }
+
+        // &::before {
+        //     width: 32px;
+        //     margin-left: auto;
+        // }
+        // &::after {
+        //     width: 20px;
+        //     margin-left: auto;
+        // }
+
+        // & .centerBar {
+        //     width: 26px;
+        // }
+    }
+
+    @media #{$md} {
+        display: none;
+    }
+}
+
+@media #{$sp} {
+    
+    .close .headerNavButton {
+
+        &::before {
+            transform: translateY(-10px);
+        }
+
+        &::after {
+            transform: translateY(10px);
+        }
+    }
+
+    .open .headerNavButton {
+        color: var(--black);
+
+        &::before {
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+        }
+    }
+
+    .open .centerBar {
+        transform: scale(0);
+    }
+}
+
+// @media (hover: hover) {
+//     .headerNav a:hover {
+//         color: var(--accent);
+//     }
+// }
+
+@media (hover: none) {
+    .headerNav a {// タップ時に適用されるデバイス標準のハイライトカラーを削除
+        -webkit-tap-highlight-color: transparent;
+        // &:active {
+        //     color: var(--main);
+        // }
+    }
+}

@@ -1,0 +1,41 @@
+// Sassの$変数、Sassのmixin などグローバルに定義するファイル。
+// ※CSS変数は_globals.scss に記述。
+
+// 設計参考 https://zenn.dev/catnose99/scraps/5e3d51d75113d3
+
+// ===================================
+// Sass レスポンシブ ブレイクポイント定義
+// ===================================
+$sp: "(max-width: 743px)";
+// $tb: "(min-width: 744px)";// 基本使わない
+$md: "(min-width: 744px)";
+
+// ===================================
+// Sass ダークモード
+// ===================================
+$dark: "(prefers-color-scheme: dark)";
+
+// 使うときの例
+// @use使うときは
+// @media #{g.$sp} {
+// }
+// @use使わないときは
+// @media #{$sp} {
+// }
+
+// ===================================
+// Sass mixin
+// ===================================
+@mixin mxAuto {
+  margin-left: auto;
+  margin-right: auto;
+}
+// @include mxAuto;
+
+@mixin hover {
+  &:hover,
+  &:active {
+    opacity: .8;
+  }
+}
+// a { @include hover; }

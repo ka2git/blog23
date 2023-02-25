@@ -1,0 +1,8 @@
+@forward "./button";
+@forward "./list";
+@forward "./table";
+@forward "./toc";
+
+@forward "./article";
+// 記事中に button list table tocを使うことがあるので、
+// 一応 article を最後に読み込んでおく

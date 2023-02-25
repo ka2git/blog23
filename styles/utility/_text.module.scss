@@ -1,0 +1,15 @@
+.decoNone {
+    text-decoration: none;
+}
+
+.textCenter {
+    text-align: center;  
+
+    &MdOnly {     
+        text-align: left;
+        
+        @media #{$md} {
+            text-align: center;
+        }
+    }
+}
